@@ -1,6 +1,8 @@
 ## paging
 ```javascript
 
+    angular.module('myapp',['ngui-paging']);
+    ... 
     function ctrl($pagingFactory){
         ...
         var paging = self.paging = $pagingFactory();
@@ -13,7 +15,7 @@
         
         var load = function(){
             http.get('//xxx.com/foo/bar',{
-                params: {limit:paging.limit, page: limit:paging.page}
+                params: {limit:paging.limit, page: paging.page }
             })
                 .success(function(resp){
                     self.items = resp.items;                    
