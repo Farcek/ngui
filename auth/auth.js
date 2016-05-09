@@ -9,7 +9,7 @@
 
                 var to = $state.get(toState.name);
 
-                if (toState.secret && !$authService.isAuthenticated) {
+                if (toState.secret && !$authService.token) {
 
                     $rootScope.$returnToState = [toState, toParams];
 
@@ -50,55 +50,36 @@
 
     auth.factory('$authService', ['$rootScope', '$state', '$authConfig', '$cookies',
         function ($rootScope, $state, $authConfig, $cookies) {
-            var _user;
+
 
             var cnToken = $authConfig.cookieName;
-            var cnTokenObj = $authConfig.cookieName + '_obj';
-
-            var cookieObj = $cookies.getObject(cnTokenObj);
-            if (cookieObj) {
-                _user = cookieObj;
-            }
+            var _token = $cookies.get(cnToken),_data;
 
             return {
-                get isAuthenticated() {
-                    return !!_user;
+                get data() {
+                    return _token ? _data : null;
                 },
                 get token() {
-                    return _user && _user.token;
+                    return _token;
                 },
-                get user() {
-                    return _user;
+                setData: function (data) {
+                    _data = data;
                 },
-                setAuth: function (options) {
-                    if (options && options.username && options.userid && options.token) {
-                        _user = {
-                            userid: options.userid,
-                            username: options.username,
-                            token: options.token
-                        };
-
-
-                        if ('custom' in options) {
-                            _user.custom = options.custom;
-                        }
-
-                        $cookies.putObject(cnTokenObj, _user);
-                        $cookies.put(cnToken, _user.token);
-                    }
+                setToken: function (token) {
+                    $cookies.put(cnToken, _token = token);
                 },
-                clearAuth: function () {
+                clear: function () {
+                    _token = null;
+                    _data = null;
                     $cookies.remove(cnToken);
-                    $cookies.remove(cnTokenObj);
-                    _user = false;
-                    $state.go($authConfig.homeState);
                 },
                 returnToState: function (state) {
                     if (Array.isArray(state) && state.length > 0) {
                         $state.go(state[0], state.length > 1 ? state[1] : null);
                     } else if (Array.isArray($rootScope.$returnToState) && $rootScope.$returnToState.length > 0) {
-                        $state.go($rootScope.$returnToState[0],
-                            $rootScope.$returnToState.length > 1 ? $rootScope.$returnToState[1] : null);
+                        var to = $rootScope.$returnToState[0];
+                        var params = $rootScope.$returnToState.length > 1 ? $rootScope.$returnToState[1] : null;
+                        $state.go(to, params);
                     } else {
                         $state.go($authConfig.homeState);
                     }
