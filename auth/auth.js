@@ -32,6 +32,12 @@
             setCookieName: function (value) {
                 cookieName = value;
             },
+            setHeaderName: function (value) {
+                headerName = value;
+            },
+            setHeaderPrefix: function (value) {
+                headerPrefix = value;
+            },
             $get: function () {
                 return {
                     get loginState() {
