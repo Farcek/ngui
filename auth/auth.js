@@ -21,7 +21,7 @@
     ]);
 
     auth.provider("$authConfig", function () {
-        var loginState = 'login', homeState = 'home', cookieName = '$cid';
+        var loginState = 'login', homeState = 'home', cookieName = '$cid', headerName = 'authorization', headerPrefix = 'Bearer';
         return {
             setLoginState: function (value) {
                 loginState = value;
@@ -42,6 +42,12 @@
                     },
                     get cookieName() {
                         return cookieName;
+                    },
+                    get headerName() {
+                        return headerName;
+                    },
+                    get headerPrefix() {
+                        return headerPrefix;
                     }
                 };
             }
@@ -51,9 +57,8 @@
     auth.factory('$authService', ['$rootScope', '$state', '$authConfig', '$cookies',
         function ($rootScope, $state, $authConfig, $cookies) {
 
-
             var cnToken = $authConfig.cookieName;
-            var _token = $cookies.get(cnToken),_data;
+            var _token = $cookies.get(cnToken), _data;
 
             return {
                 get data() {
@@ -87,4 +92,41 @@
             };
         }
     ]);
+
+    auth.config(['$httpProvider',
+        function ($httpProvider) {
+            $httpProvider.interceptors.push('SecureTokenInjector');
+        }
+    ]);
+
+    auth.factory('SecureTokenInjector', ['$q', '$injector',
+        function ($q, $injector) {
+            var sessionInjector = {
+                request: function (config) {
+                    if (config.notToken || config.noToken) {
+                        return config;
+                    }
+
+                    return $q(function (resolve, reject) {
+                        var $authService = $injector.get('$authService');
+                        var $authConfig = $injector.get('$authConfig');
+
+
+                        if (config.headers && $authService.token) {
+                            config.headers[$authConfig.headerName] = $authConfig.headerPrefix + ' ' + $authService.token;
+                        }
+                        resolve(config);
+                    });
+                },
+                responseError: function (response) {
+                    if (response.status === 401) {
+                        $injector.get('$authService').clear();
+                    }
+                    return $q.reject(response);
+                }
+            };
+            return sessionInjector;
+        }
+    ]);
+
 })();
