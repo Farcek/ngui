@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="columns medium-2">
+    <select ng-model="date.year" ng-options="x for x in getYears()" style="width: 120px">
+      <option value=""> -- он -- </option>
+    </select>
+  </div>
+  <div class="columns medium-2">
+    <select ng-model="date.month" ng-options="x for x in getMonths()" style="width: 120px">
+      <option value=""> -- сар -- </option>
+    </select>
+  </div>
+  <div class="columns medium-2 float-left">
+    <select ng-model="date.day" ng-options="x for x in getDays()" style="width: 120px">
+      <option value=""> -- өдөр -- </option>
+    </select>
+  </div>
+</div>
