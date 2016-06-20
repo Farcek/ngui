@@ -1,0 +1,37 @@
+<style>
+    .syspanel {
+        background-color: darkcyan;
+
+        overflow: hidden;
+    }
+    .syspanel .panel-menu{
+        position: absolute;
+        left: 0;
+        width: 200px;
+        top: 0;
+        bottom: 0;
+        background: red;
+
+        transition: left 0.3s ease-out;
+    }
+    .syspanel .panel-body{
+
+        margin-left: 200px;
+        position: relative;
+        background-color: green;
+
+        transition: margin-left 0.3s ease-out;
+    }
+
+    .syspanel.closed-menu .panel-menu{
+        left: -200px;
+    }
+    .syspanel.closed-menu .panel-body{
+        margin-left: 0px;
+    }
+
+</style>
+<div class="syspanel" ng-class="{'closed-menu' : !open}">
+    <div class="panel-menu"  ng-transclude="menu">menu</div>
+    <div class="panel-body" ng-transclude="body">body</div>
+</div>
