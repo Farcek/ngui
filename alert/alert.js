@@ -13,10 +13,22 @@
                 var icons = angular.extend({}, $nguiAlertConfig.icons, options.icons || {});
                 var types = angular.extend({}, $nguiAlertConfig.types, options.types || {});
 
+                var openListeners = [], closeListeners = [];
+                var emit = function (listeners) {
+                    listeners.forEach(function (cb) {
+                        cb(self);
+                    });
+                };
 
                 var _msg = {},
 
                     self = {
+                        onOpen: function (handle) {
+                            openListeners.push(handle);
+                        },
+                        onClose: function (handle) {
+                            closeListeners.push(handle);
+                        },
                         open: function (params) {
                             var _t = params.type || type;
                             if (_t in types) {
@@ -27,9 +39,11 @@
                             } else {
                                 throw new TypeError("not supporting type. type = `" + _t + "`. allowed types :" + Object.keys(types).join(', '));
                             }
+                            emit(openListeners);
                         },
                         close: function () {
                             _msg.showing = false;
+                            emit(closeListeners);
                         },
 
                         show: function (message) {

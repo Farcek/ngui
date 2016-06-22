@@ -1,6 +1,15 @@
-function AlertCtrl($scope, $nguiAlert) {
+function AlertCtrl($scope, $nguiAlert,$log) {
     var $alert = $scope.$alert = $nguiAlert({
         type: 'error'
+    });
+
+
+
+    $alert.onClose(function () {
+        $log.debug('onClose :',$alert.message);
+    });
+    $alert.onOpen(function () {
+        $log.info('onOpen :',$alert.message);
     });
 
     var $custom = $scope.$custom = $nguiAlert({

@@ -57,7 +57,11 @@ angular.module('ngui', [
     'ngui-tab'
 ])
     .config(function ($nguiConfigProvider) {
-        $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap')
-        ;
+        $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
+
+    })
+    .config(function ($logProvider) {
+        $logProvider.debugEnabled(true);
+
     });
 ;
