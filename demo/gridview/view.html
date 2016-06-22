@@ -1,0 +1,11 @@
+<div ngui-gridview="" datasource="/demo/gridview/data.json" data-limit="10" >
+    <div ngui-gridview-column="id">
+        <a href="/view/{{$item.id}}">{{$item.id}}</a>
+    </div>
+    <div ngui-gridview-column="name"></div>
+    <div ngui-gridview-column-tool>
+        <a href="/del/{{$item.id}}">delete</a>
+    </div>
+
+    <div ngui-gridview-empty>grid is empty</div>
+</div>

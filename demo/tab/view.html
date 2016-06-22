@@ -1,0 +1,41 @@
+
+<h2>basic</h2>
+<div ngui-tab>
+    <div ngui-tab-panel="tab1" data-title="tab1">
+        tab1 ...
+    </div>
+    <div ngui-tab-panel="tab2" data-title="tab2" active="true">
+        <div ngui-tab>
+            <div ngui-tab-panel="tab1" data-title="tab1" active="true">
+                sub tab1 ...
+            </div>
+            <div ngui-tab-panel="tab2" data-title="tab2" >
+                sub tab2 ...
+            </div>
+        </div>
+
+    </div>
+    <div ngui-tab-panel="tab3" data-title="tab3" >
+        tab3 ...
+    </div>
+</div>
+
+
+<h2>More</h2>
+<hr>
+<div>
+    <button class="btn btn-default" ng-click="$tab.select('tab3')">
+        select tab 3
+    </button>
+</div>
+<div ngui-tab="$tab">
+    <div ngui-tab-panel="tab1" data-title="tab1" active="true">
+        tab1 ...
+    </div>
+    <div ngui-tab-panel="tab2" data-title="tab2">
+        tab2 ...
+    </div>
+    <div ngui-tab-panel="tab3" data-title="tab3" >
+        tab3 ...
+    </div>
+</div>

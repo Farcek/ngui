@@ -1,0 +1,42 @@
+<div>
+    <h2>basic</h2>
+    <div>
+        <div ngui-paging active="page" total="total" limit="limit" max-page="maxPage">
+            <a href="#/paging/{{$page}}">{{$page}}</a>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label> page </label>
+        <input type="number" class="form-control" ng-model="page">
+    </div>
+
+    <div class="form-group">
+        <label> total </label>
+        <input type="number" class="form-control" ng-model="total">
+    </div>
+
+
+    <div class="form-group">
+        <label> limit </label>
+        <input type="number" class="form-control" ng-model="limit">
+    </div>
+    <div class="form-group">
+        <label> max-page </label>
+        <input type="number" class="form-control" ng-model="maxPage">
+    </div>
+</div>
+
+<div ng-init="page2=1">
+    <h2>...</h2>
+    <div>
+        <div ngui-paging active="page2" total="total" limit="limit" max-page="maxPage">
+            <a href="javascrip:;" ng-click="$parent.page2=$page">{{$page}}</a>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label> page2 </label>
+        <input type="number" class="form-control" ng-model="page2">
+    </div>
+</div>

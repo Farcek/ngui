@@ -1,44 +1,36 @@
+# Paging
 
-
-## paging
-```javascript
+### install
 
     angular.module('myapp',['ngui-paging']);
-    ... 
-    function ctrl($pagingFactory){
-        ...
-        var paging = self.paging = $pagingFactory();
-        ...
-        // handle uri //xxx.com/foo/bar?limit=10&page=2
-        // resp: {
-            items: [{},{},...],
-            total: 48
-        }
-        
-        var load = function(){
-            http.get('//xxx.com/foo/bar',{
-                params: {limit:paging.limit, page: paging.page }
-            })
-                .success(function(resp){
-                    self.items = resp.items;                    
-                    paging.update({
-                        total : resp.total
-                    })
-                });
-        }
-        
-        
-        ctrl.changePage = function(){
-            load();        
-        }
+
+## using
+
+controller.js
+```javascript
+
+    function PagingCtrl($scope,$routeParams) {
+        $scope.page= parseInt($routeParams.page)  || 1;
+        $scope.total=315;
+        $scope.limit=10;
+        $scope.maxPage=10;
     }
 
 ```
 
+view.html
 ```html
-    <ul>
-        <li ng-repeat="it in ctrl.items"> {{it}}</li>
-    </ul>
-    <div ui-paging="ctrl.paging" on-change="ctrl.changePage()"></div>
+    <!-- sample 1 -->
+    <div ngui-paging active="page" total="total" limit="limit" max-page="maxPage">
+        <a href="#/paging/{{$page}}">{{$page}}</a>
+    </div>
+
+    <!-- sample 2 -->
+    <div ngui-paging active="page" total="total" limit="limit" max-page="maxPage">
+        <a href="javascrip:;" ng-click="$parent.page=$page">{{$page}}</a>
+    </div>
 
 ```
+
+### attr
+`dsdsdsd`

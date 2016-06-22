@@ -1,37 +1,26 @@
-<style>
-    .syspanel {
-        background-color: darkcyan;
+<div class="panel-header">
+    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" aria-expanded="false" ng-click="open =!open">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">{{$data.title}}</a>
+            </div>
 
-        overflow: hidden;
-    }
-    .syspanel .panel-menu{
-        position: absolute;
-        left: 0;
-        width: 200px;
-        top: 0;
-        bottom: 0;
-        background: red;
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div ng-transclude="header" class="collapse navbar-collapse">
 
-        transition: left 0.3s ease-out;
-    }
-    .syspanel .panel-body{
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+<div class="panel-wrap">
 
-        margin-left: 200px;
-        position: relative;
-        background-color: green;
-
-        transition: margin-left 0.3s ease-out;
-    }
-
-    .syspanel.closed-menu .panel-menu{
-        left: -200px;
-    }
-    .syspanel.closed-menu .panel-body{
-        margin-left: 0px;
-    }
-
-</style>
-<div class="syspanel" ng-class="{'closed-menu' : !open}">
-    <div class="panel-menu"  ng-transclude="menu">menu</div>
+    <div class="panel-menu" ng-transclude="menu">menu</div>
     <div class="panel-body" ng-transclude="body">body</div>
 </div>

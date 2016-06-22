@@ -1,0 +1,8 @@
+<div class="nguitab">
+    <ul class="nav nav-tabs" role="tablist">
+        <li ng-repeat="it in $tab.panels" ng-class="{active:it.selected}">
+            <a href="javascript:;" ng-click="$tab.select(it.name)">{{it.title}}</a>
+        </li>
+    </ul>
+    <div class="tab-content" ng-transclude></div>
+</div>

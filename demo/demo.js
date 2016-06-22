@@ -11,11 +11,27 @@ angular.module('demobs', ['ngRoute', 'ngui'])
             .when('/syspanel', {
                 templateUrl: '/demo/syspanel/view.html',
                 controller: SyspanelCtrl,
-                controllerAs : 'SyspanelCtrl'
+                controllerAs: 'SyspanelCtrl'
             })
             .when('/form', {
                 templateUrl: '/demo/form/view.html',
                 controller: FormCtrl
+            })
+            .when('/tab', {
+                templateUrl: '/demo/tab/view.html',
+                controller: TabCtrl
+            })
+            .when('/gridview', {
+                templateUrl: '/demo/gridview/view.html',
+                controller: GridviewCtrl
+            })
+            .when('/paging', {
+                templateUrl: '/demo/paging/view.html',
+                controller: PagingCtrl
+            })
+            .when('/paging/:page', {
+                templateUrl: '/demo/paging/view.html',
+                controller: PagingCtrl
             })
             .otherwise({
                 redirectTo: '/home'
@@ -25,7 +41,15 @@ angular.module('demobs', ['ngRoute', 'ngui'])
     });
 ;
 
-angular.module('ngui', ['ngui-core', 'ngui-alert','ngui-syspanel','ngui-form'])
+angular.module('ngui', [
+    'ngui-core',
+    'ngui-alert',
+    'ngui-syspanel',
+    'ngui-form',
+    'ngui-gridview',
+    'ngui-paging',
+    'ngui-tab'
+])
     .config(function ($nguiConfigProvider) {
         $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
     });

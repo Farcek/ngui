@@ -1,0 +1,30 @@
+{
+  "total": 5,
+  "items": [
+    {
+      "id": 1,
+      "name": "farcek",
+      "age": 32
+    },
+    {
+      "id": 2,
+      "name": "farcek 2",
+      "age": 32
+    },
+    {
+      "id": 3,
+      "name": "farcek 3",
+      "age": 32
+    },
+    {
+      "id": 4,
+      "name": "farcek 4",
+      "age": 32
+    },
+    {
+      "id": 5,
+      "name": "farcek 5",
+      "age": 32
+    }
+  ]
+}

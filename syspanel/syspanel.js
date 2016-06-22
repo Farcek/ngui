@@ -13,14 +13,31 @@
             return {
                 restrict: 'A',
                 transclude: {
+                    'header': 'panelHeader',
                     'menu': 'panelMenu',
                     'body': 'panelBody'
                 },
                 scope: {
-                    open : '=menuOpen'
+                    open: '=menuOpen',
+                    title: '@', titleVar: '='
                 },
                 templateUrl: function (elem, attrs) {
                     return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/syspanel.htm';
+                },
+                link: function ($scope, $ele) {
+                    $ele.addClass('syspanel');
+                    $scope.$watch('open', function (open) {
+                        if (!open) {
+                            $ele.addClass('closed-menu');
+                        } else {
+                            $ele.removeClass('closed-menu');
+                        }
+                    });
+                    $scope.$data = {
+                        get title() {
+                            return $scope.titleVar || $scope.title;
+                        }
+                    };
                 }
             };
         }

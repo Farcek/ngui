@@ -72,31 +72,112 @@
                 };
             }
         ])
-        .directive('uiPaging', [
-            function () {
+        .directive('nguiPaging', ['$nguiConfig', '$pagingFactory',
+            function ($nguiConfig, $pagingFactory) {
                 return {
                     templateUrl: function (elem, attrs) {
-                        return attrs.templateUrl || 'paging.htm';
+                        return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/paging/paging.htm';
                     },
                     restrict: 'A',
+                    transclude: true,
+                    //replace: true,
                     scope: {
-                        pagination: '=uiPaging',
+                        paging: '=nguiPaging',
+                        active: '=',
+                        total: '=',
+                        limit: '=',
+                        maxPage: '=',
+                        urlFormat: '@',
                         onChange: '&'
                     },
-                    link: function (scope) {
-
+                    link: function (scope, el, attr, ctrl, $transclude) {
+                        // scope.test = 323;
+                        // var child = scope.$new();
+                        // child.test = "kk";
+                        // el.append(tran( scope ));
                         scope.cp = function (p) {
-                            if (scope.pagination) {
-                                scope.pagination.page = p;
-                            }
+                            scope.active = p;
 
-                            if (scope.onChange) {
-                                scope.onChange();
-                            }
                         };
 
+
+                        var $paging = scope.$paging = {
+                            get $scope() {
+                                return scope.$parent;
+                            },
+                            get $transclude() {
+                                return $transclude;
+                            },
+                            get total() {
+                                return scope.total || 0;
+                            },
+                            get limit() {
+                                return scope.limit || 10;
+                            },
+                            get maxPage() {
+                                return scope.maxPage || 10;
+                            },
+                            get active() {
+                                return scope.active || 1;
+                            },
+                            get totalPage() {
+                                var limit = $paging.limit;
+                                return limit && Math.ceil($paging.total / limit);
+                            },
+                            get startPage() {
+                                var pr = Math.round($paging.maxPage / 2);
+                                var p = $paging.active - pr;
+                                return p < 1 ? 1 : p;
+                            },
+                            get endPage() {
+                                var pr = Math.round($paging.maxPage / 2), t = $paging.totalPage;
+                                var p = $paging.active + pr;
+                                return p > t ? t : p;
+                            },
+                            get printingPages() {
+                                var r = [];
+                                for (var i = $paging.startPage; i <= $paging.endPage; i++) {
+                                    r.push(i);
+                                }
+                                return r;
+                            },
+                            get hasFirst() {
+                                return $paging.startPage > 1;
+                            },
+                            get hasFirstRange() {
+                                return $paging.startPage > 2;
+                            },
+                            get hasLast() {
+                                return $paging.endPage < $paging.totalPage;
+                            },
+                            get hasLastRange() {
+                                return $paging.endPage < $paging.totalPage;
+                            }
+                        };
                     }
                 };
             }
-        ]);
+        ])
+        .directive('nguiPagingItem', [
+            function () {
+                return {
+                    restrict: 'A',
+                    //transclude: true,
+                    //replace: true,
+                    scope: {
+                        $paging: '=nguiPagingItem',
+                        $page: '=page'
+                    },
+                    link: function (scope, el, attrs) {
+
+                        var $scope = scope.$paging.$scope.$new();
+                        $scope.$page = scope.$page;
+                        scope.$paging.$transclude($scope, function (clone) {
+                            el.replaceWith(clone);
+                        });
+                    }
+                };
+            }
+        ])
+    ;
 })(angular)
