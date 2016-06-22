@@ -17,6 +17,11 @@ angular.module('demobs', ['ngRoute', 'ngui'])
                 templateUrl: '/demo/form/view.html',
                 controller: FormCtrl
             })
+            .when('/select', {
+                templateUrl: '/demo/select/view.html',
+                controller: SelectCtrl,
+                controllerAs : 'SelectCtrl'
+            })
             .otherwise({
                 redirectTo: '/home'
             });
@@ -25,8 +30,9 @@ angular.module('demobs', ['ngRoute', 'ngui'])
     });
 ;
 
-angular.module('ngui', ['ngui-core', 'ngui-alert','ngui-syspanel','ngui-form'])
+angular.module('ngui', ['ngui-core', 'ngui-alert','ngui-syspanel','ngui-form','ngui-select'])
     .config(function ($nguiConfigProvider) {
-        $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
+        $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap')
+        ;
     });
 ;
