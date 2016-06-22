@@ -6,99 +6,21 @@
     'use strict';
     /* global angular */
     var app = angular.module('ngui-form', ['ngMessages']);
-
-
-    app.directive('nguiForm', ['$nguiConfig',
-        function ($nguiConfig) {
-
-
-            return {
-                restrict: 'A',
-                transclude: true,
-                require: '^form',
-                scope: {},
-                template: '<div ng-transclude></div>',
-                controller: function ($scope) {
-
-                },
-                link: function (scope, element, attrs, formCtrl) {
-                    //scope.$setFrm(formCtrl);
-                }
-            };
-        }
-    ]);
-
-    app.directive('nguiFormText', ['$nguiConfig', '$nguiFormConfig',
-        function ($nguiConfig, $nguiFormConfig) {
-            return {
-                require: ['^nguiForm', '^form', '^ngModel'],
-                restrict: 'A',
-                scope: true,
-                templateUrl: function (elem, attrs) {
-                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/form/text.htm';
-                },
-                link: function ($scope, $element, $attrs, controllersArr) {
-                    var nguiFrm = controllersArr[0];
-                    var frm = controllersArr[1];
-                    var model = controllersArr[2];
-
-
-                    $scope.data = {
-                        get label() {
-                            return $attrs.label;
-                        },
-                        get name() {
-                            return $attrs.nguiFormText;
-                        },
-                        get required() {
-                            return 'rq' in $attrs;
-                        },
-                        get $model() {
-                            return this.$frm[this.name];
-                        },
-                        get $frm() {
-                            return frm;
-                        },
-                        get $nguiFrm() {
-                            return nguiFrm;
-                        },
-                        get showError() {
-                            var $model = this.$model;
-                            return $model && $model.$invalid && ($model.$touched || frm.$submitted);
-                        },
-
-                        get errorMessages() {
-                            return $nguiFormConfig.messages;
-                        },
-
-                        get model() {
-                            return model.$modelValue;
-                        },
-                        set model(value) {
-                            model.$setViewValue(value);
-                        }
-                    };
-
-                }
-
-            };
-        }
-    ]);
     app.directive('nguiFormField', ['$nguiConfig', '$nguiFormConfig',
         function ($nguiConfig, $nguiFormConfig) {
             return {
                 require: ['^form'],
                 restrict: 'A',
+                replace: true,
                 transclude: true,
                 scope: {
                     field: '=nguiFormField',
-                    label: "@",
-                    labelVar: "="
+                    label: "@", labelVar: "="
                 },
                 templateUrl: function (elem, attrs) {
                     return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/form/field.htm';
                 },
-                link: function ($scope, $element, $attrs, controllersArr,transclude) {
+                link: function ($scope, $element, $attrs, controllersArr) {
                     var frm = controllersArr[0];
                     $scope.$data = {
                         get label() {
@@ -115,6 +37,8 @@
                             return $nguiFormConfig.messages;
                         },
                     };
+
+
                 }
 
             };

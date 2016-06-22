@@ -4,6 +4,8 @@ function FormCtrl($scope, $nguiAlert) {
         age : 32
     };
 
+    $scope.labelAge = "Age frpm ctrl"
+
     $scope.submit = function () {
       console.log($scope.mdl);
     };

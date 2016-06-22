@@ -1,26 +1,20 @@
-<form name="frm" ngui-form novalidate ng-submit="submit()">
-    <!--<div ngui-form-text data-label="Name" data-name="name" ng-model="mdl.name" ></div>-->
-    <div ngui-form-text="name2" data-label="Name2" ng-model="mdl.name2" rq>
-    </div>
-    <div ngui-form-text="name1" data-label="Name1" ng-model="mdl.name1" rq-var="false"></div>
-    <!--<div ngui-form-text data-label="Name1" data-name="name1" ng-model="mdl.name1" ></div>-->
-    <!--<div ngui-form-number data-label="Age" ng-model="mdl.age">age</div>-->
-
-    <button type="submit">ok</button>
-</form>
-
-
 <form name="frm1">
-    <div ngui-form-field="frm1.name2" data-label="Name2" >
-        <input type="text" class="form-control" name="name2" ng-model="mdl.name22" required>
+    <div ngui-form-field="frm1.name" data-label="Name">
+        <input type="text" class="form-control" name="name" ng-model="mdl.name" required>
     </div>
-    <div ngui-form-field="frm1.age" data-label="Age" >
+    <div ngui-form-field="frm1.age" data-label="Age" data-label-var="labelAge">
         <input type="number" class="form-control" name="age" ng-model="mdl.age" required>
     </div>
     <button type="submit">ok</button>
 </form>
-lll
-<pre>{{frm1.name2 | json}}</pre>
+
+mdl
+<pre>{{mdl | json}}</pre>
+<hr>
+<div class="form-group">
+    <label>Label age</label>
+    <input class="form-control" ng-model="labelAge">
+</div>
 
 
 
