@@ -17,6 +17,11 @@ angular.module('demobs', ['ngRoute', 'ngui'])
                 templateUrl: '/demo/form/view.html',
                 controller: FormCtrl
             })
+            .when('/select', {
+                templateUrl: '/demo/select/view.html',
+                controller: SelectCtrl,
+                controllerAs : 'SelectCtrl'
+            })
             .when('/tab', {
                 templateUrl: '/demo/tab/view.html',
                 controller: TabCtrl
@@ -46,11 +51,13 @@ angular.module('ngui', [
     'ngui-alert',
     'ngui-syspanel',
     'ngui-form',
+    'ngui-select',
     'ngui-gridview',
     'ngui-paging',
     'ngui-tab'
 ])
     .config(function ($nguiConfigProvider) {
-        $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
+        $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap')
+        ;
     });
 ;
