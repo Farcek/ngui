@@ -37,6 +37,10 @@ angular.module('demobs', ['ngRoute', 'ngui'])
             .when('/paging/:page', {
                 templateUrl: '/demo/paging/view.html',
                 controller: PagingCtrl
+	    })
+            .when('/htmltext', {
+                templateUrl: '/demo/htmltext/view.html',
+                controller: HtmltextCtrl
             })
             .otherwise({
                 redirectTo: '/home'
@@ -54,7 +58,8 @@ angular.module('ngui', [
     'ngui-select',
     'ngui-gridview',
     'ngui-paging',
-    'ngui-tab'
+    'ngui-tab',
+    'ngui-htmltext'
 ])
     .config(function ($nguiConfigProvider) {
         $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
