@@ -2,7 +2,7 @@
     <li ng-if="$paging.hasFirst">
         <a ngui-paging-item="$paging" page="1">1</a>
     </li>
-    <li class="disabled" ng-f="$paging.hasFirstRange">
+    <li class="disabled" ng-if="$paging.hasFirstRange">
         <span>...</span>
     </li>
     <li ng-repeat="p in $paging.printingPages" ng-class="{active : p === $paging.active}">
@@ -15,3 +15,5 @@
         <a ngui-paging-item="$paging" page="$paging.totalPage">{{$paging.totalPage}}</a>
     </li>
 </ul>
+
+{{$paging}}

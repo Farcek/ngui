@@ -1,11 +1,31 @@
-<div ngui-gridview="" datasource="/demo/gridview/data.json" data-limit="10" >
-    <div ngui-gridview-column="id">
-        <a href="/view/{{$item.id}}">{{$item.id}}</a>
-    </div>
-    <div ngui-gridview-column="name"></div>
-    <div ngui-gridview-column-tool>
-        <a href="/del/{{$item.id}}">delete</a>
-    </div>
+<table class="table" ngui-gridview on-change="load()" >
+    <thead>
+    <tr>
+        <th ngui-gridview-sorting="id">Id</th>
+        <th ngui-gridview-sorting="name">Name shde</th>
+    </tr>
+    <tr>
+        <th ngui-gridview-filter-number="id"></th>
+        <th ngui-gridview-filter-text="name"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="it in $items">
+        <td>{{it.id}}</td>
+        <td>{{it.name}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2">
+            <div ngui-paging active="page" total="$total">
+                <a>{{$page}}</a>
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+</table>
 
-    <div ngui-gridview-empty>grid is empty</div>
-</div>
+<pre>{{$gridview | json}}</pre>
+{{$total}}/{{page}}
+{{$items}}
