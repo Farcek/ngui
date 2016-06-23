@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/demo/select/style.css"/>
+<link rel="stylesheet" href="/tpl-bootstrap/select/style.css"/>
 
 <div class="row search-input">
   <div class="col-md-12">
@@ -13,18 +13,18 @@
       <thead>
         <tr>
           <th width="50"></th>
-          <th width="300">{{$select.options.srcLabel}}</th>
+          <th width="300">{{$select.options.tableLabel}}</th>
           <th width="100">Сонгох</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="item in $select.items">
-          <td>{{item.id}}</td>
-          <td>{{item.name}}</td>
-          <td><button id="item{{item.id}}" type="submit" ng-disabled="$select.isEnabled(item)" class="btn btn-success" ng-click="$select.select(item.id, item)">Сонгох</button></td>
+          <td>{{item[$select.options.srcId]}}</td>
+          <td>{{item[$select.options.srcName]}}</td>
+          <td><button id="item{{item[$select.options.srcId]}}" type="submit" ng-disabled="$select.isEnabled(item)" class="btn btn-success" ng-click="$select.select(item[$select.options.srcId], item)">Сонгох</button></td>
         </tr>
         <tr ng-if="$select.items.length === 0">
-          <td colspan="4">{{$select.options.srcLabel}} олдсонгүй.</td>
+          <td colspan="4">{{$select.options.tableLabel}} олдсонгүй.</td>
         </tr>
       </tbody>
     </table>
@@ -37,14 +37,14 @@
       <thead>
         <tr>
           <th width="50"></th>
-          <th width="300">Cонгогдсон <span class="lowercase">{{$select.options.srcLabel}}</span></th>
+          <th width="300">Cонгогдсон <span class="lowercase">{{$select.options.tableLabel}}</span></th>
           <th width="100">Хасах</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="(key, value) in $select.selectedItems">
           <td>{{key}}</td>
-          <td>{{value.name}}</td>
+          <td>{{value[$select.options.srcName]}}</td>
           <td><button class="btn btn-danger" ng-click="$select.remove(key)">Хасах</button></td>
         </tr>
       </tbody>

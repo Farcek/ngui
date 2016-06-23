@@ -46,12 +46,17 @@ angular.module('demobs', ['ngRoute', 'ngui'])
                 templateUrl: '/demo/modal/view.html',
                 controller: ModalCtrl
             })
+            .when('/notify', {
+                templateUrl: '/demo/notify/view.html',
+                controller: NotifyCtrl
+            })
             .otherwise({
                 redirectTo: '/home'
             });
 
         //$locationProvider.html5Mode(true);
     });
+;
 
 angular.module('ngui', [
     'ngui-core',
@@ -63,7 +68,8 @@ angular.module('ngui', [
     'ngui-paging',
     'ngui-tab',
     'ngui-htmltext',
-    'ngui-modal'
+    'ngui-modal',
+    'ngui-notify'
 ])
     .config(function ($nguiConfigProvider) {
         $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
@@ -73,3 +79,4 @@ angular.module('ngui', [
         $logProvider.debugEnabled(true);
 
     });
+;
