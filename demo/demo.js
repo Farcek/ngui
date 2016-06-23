@@ -37,10 +37,14 @@ angular.module('demobs', ['ngRoute', 'ngui'])
             .when('/paging/:page', {
                 templateUrl: '/demo/paging/view.html',
                 controller: PagingCtrl
-	    })
+            })
             .when('/htmltext', {
                 templateUrl: '/demo/htmltext/view.html',
                 controller: HtmltextCtrl
+            })
+            .when('/modal', {
+                templateUrl: '/demo/modal/view.html',
+                controller: ModalCtrl
             })
             .otherwise({
                 redirectTo: '/home'
@@ -48,7 +52,6 @@ angular.module('demobs', ['ngRoute', 'ngui'])
 
         //$locationProvider.html5Mode(true);
     });
-;
 
 angular.module('ngui', [
     'ngui-core',
@@ -59,7 +62,8 @@ angular.module('ngui', [
     'ngui-gridview',
     'ngui-paging',
     'ngui-tab',
-    'ngui-htmltext'
+    'ngui-htmltext',
+    'ngui-modal'
 ])
     .config(function ($nguiConfigProvider) {
         $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');
@@ -69,4 +73,3 @@ angular.module('ngui', [
         $logProvider.debugEnabled(true);
 
     });
-;
