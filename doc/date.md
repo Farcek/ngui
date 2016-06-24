@@ -20,7 +20,7 @@ Use of ngui date picker
 3. in html template 
 
     <div ng-controller="MainCtrl as ctrl">
-      <div ngui-date ng-model="ctrl.mydate" max-date="2017-09-09" min-date="2010-06-09" start-year="" end-year="" required></div>
+      <div ngui-date ng-model="ctrl.mydate" max-date="2017-09-09" min-date="2010-06-09" start-year="" end-year=""></div>
       <div class="row">
         <div class="columns medium-4">
           <input type="date" ng-model= "ctrl.mydate" min="2016-06-09">

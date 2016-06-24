@@ -1,0 +1,9 @@
+<h3>Date picker</h3>
+<div ngui-date ng-model="ctrl.mydate" max-date="2017-09-09" min-date="2010-06-09" start-year="" end-year=""></div>
+<hr>
+<div class="row">
+    <div class="col-md-4">
+        <p> Date of birth: <b> {{ctrl.mydate | date : 'yyyy-MM-dd'}} </b> </p>
+        <input type="date" ng-model= "ctrl.mydate" min="2016-06-09">
+    </div>
+</div>

@@ -50,6 +50,10 @@ angular.module('demobs', ['ngRoute', 'ngui'])
                 templateUrl: '/demo/notify/view.html',
                 controller: NotifyCtrl
             })
+            .when('/date', {
+                templateUrl: '/demo/date/view.html',
+                controller: DateCtrl
+            })
             .otherwise({
                 redirectTo: '/home'
             });
@@ -69,7 +73,8 @@ angular.module('ngui', [
     'ngui-tab',
     'ngui-htmltext',
     'ngui-modal',
-    'ngui-notify'
+    'ngui-notify',
+    'ngui-date'
 ])
     .config(function ($nguiConfigProvider) {
         $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');

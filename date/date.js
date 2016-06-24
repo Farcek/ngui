@@ -4,7 +4,6 @@
 
     app.directive('nguiDate', [ '$filter', '$nguiConfig',
         function ($filter, $nguiConfig) {
-          console.log($nguiConfig.baseTemplateUrl);
             return {
                 restrict: 'A',
                 require: '?ngModel',
