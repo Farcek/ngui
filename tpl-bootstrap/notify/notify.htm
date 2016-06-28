@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="/tpl-bootstrap/notify/style.css"/>
+
+<div class="ngui-notification">
+
+  <div ng-repeat="notify in $nguiNotify.notifications" class="alert alert-{{notify.type}}">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="$nguiNotify.close(notify)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <i ng-show="$notify.icon" ng-class="$notify.iconCss"></i> {{notify.message}} 
+  </div>
+
+</div>

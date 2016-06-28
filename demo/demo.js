@@ -38,6 +38,22 @@ angular.module('demobs', ['ngRoute', 'ngui'])
                 templateUrl: '/demo/paging/view.html',
                 controller: PagingCtrl
             })
+            .when('/htmltext', {
+                templateUrl: '/demo/htmltext/view.html',
+                controller: HtmltextCtrl
+            })
+            .when('/modal', {
+                templateUrl: '/demo/modal/view.html',
+                controller: ModalCtrl
+            })
+            .when('/notify', {
+                templateUrl: '/demo/notify/view.html',
+                controller: NotifyCtrl
+            })
+            .when('/date', {
+                templateUrl: '/demo/date/view.html',
+                controller: DateCtrl
+            })
             .otherwise({
                 redirectTo: '/home'
             });
@@ -54,7 +70,11 @@ angular.module('ngui', [
     'ngui-select',
     'ngui-gridview',
     'ngui-paging',
-    'ngui-tab'
+    'ngui-tab',
+    'ngui-htmltext',
+    'ngui-modal',
+    'ngui-notify',
+    'ngui-date'
 ])
     .config(function ($nguiConfigProvider) {
         $nguiConfigProvider.setBaseTemplateUrl('/tpl-bootstrap');

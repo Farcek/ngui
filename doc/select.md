@@ -16,7 +16,8 @@ Use of ngui select
     function SelectCtrl($scope, $nguiSelect) {
         var $select = this.$select = $nguiSelect({
           srcUrl :'/api/notification/player', // data request url
-          srcLabel:'Тоглогч',                 // table header label name
+          tableLabel:'Тоглогч',                 // table header label name
           srcId:'id'                          // data model key
+          srcName:'name'                          // data model name
         });
     }

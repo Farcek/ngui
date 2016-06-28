@@ -2,8 +2,8 @@
     'use strict';
     var app = angular.module('ngui-select', []);
 
-    app.factory('$nguiSelect', ['$nguiSelectConfig', '$http',
-        function ($nguiSelectConfig, $http) {
+    app.factory('$nguiSelect', ['$http',
+        function ($http) {
             return function (options) {
                 options = options || {};
                 var items = [];
@@ -65,27 +65,10 @@
                     $select: '=nguiSelect'
                 },
                 templateUrl: function (elem, attrs) {
-                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/select.htm';
+                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/select/select.htm';
                 }
             };
         }
     ]);
-
-    app.provider("$nguiSelectConfig", function () {
-        var _type = 'sample';
-        return {
-            setDefaultType: function (type) {
-                _type = type;
-            },
-            $get: function () {
-                return {
-                    get selected() {
-                        return _type;
-                    }
-                };
-            }
-
-        };
-    });
 
 })();
