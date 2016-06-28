@@ -1,0 +1,7 @@
+{
+  "name": "ngui",
+  "version": "1.0.0",
+  "description": "ng custom ui",
+  "main": "core.js",
+  "private": true
+}
