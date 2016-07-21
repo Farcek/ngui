@@ -1,71 +1,57 @@
 (function () {
     'use strict';
-    var app = angular.module('ngui-select', []);
+    var app = angular.module('ngui-select-one', []);
 
-    app.factory('$nguiSelect', ['$http',
-        function ($http) {
-            return function (options) {
-                options = options || {};
-                var items = [];
-                var selectedItems = {};
-
-                self = {
-
-                  load: function (searchtxt) {
-                        $http.get('/demo/select/data.json', {
-                          params: {search: searchtxt}
-                        })
-                        .success(function(responses){
-                          items = responses;
-                        })
-                        .error(function(err){
-                          items = err;
-                        });
-                  },
-                  isEnabled : function(item){
-                      var id = item[options.srcId]
-                      return id in selectedItems;
-                  },
-                  select: function (selectedId, selectedItem){
-                      selectedItems[selectedId]=selectedItem;
-                  },
-                  remove: function (removeId){
-                      delete selectedItems[removeId];
-                  },
-
-                  get selectedItems() {
-                     return selectedItems;
-                  },
-                  get items() {
-                     return items;
-                  },
-                  get options() {
-                     return options;
-                  },
-
-                  set selectedItems(value){
-                    selectedItems = value;
-                  },
-                  set items(value){
-                    items = value;
-                  }
-
-                }
-
-                return self;
-            };
+    app.factory('$nguiSelectOne', ['$http', '$q',
+        function ($http, $q) {
+            var self = {};
+            return self;
         }
     ]);
 
-    app.directive('nguiSelect', ['$nguiConfig',
-        function ($nguiConfig) {
+    app.directive('nguiSelectOne', ['$nguiConfig', '$nguiSelectOne', '$http',
+        function ($nguiConfig, $nguiSelectOne, $http) {
             return {
                 restrict: 'A',
                 scope: {
-                    $select: '=nguiSelect'
+                    model: '=ngModel',
+                    srcUri: '@',
+                    labelField: '@',
+                    valueField: '@',
                 },
                 templateUrl: function (elem, attrs) {
-                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/select/select.htm';
+                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/select-one/select-one.htm';
+                },
+                link: function ($scope) {
+                    var isLoad = true,isError = false;
+                    $scope.$select = {
+                        get isLoad(){
+                            return isLoad;
+                        },
+                        get isError(){
+                            return isError;
+                        },
+                        get labelField() {
+                            return $scope.labelField || 'label'
+                        },
+                        get valueField() {
+                            return $scope.valueField || 'id'
+                        }
+                    };
+
+                    $http.get($scope.srcUri)
+                        .success(function (data) {
+                            $scope.items = data;
+                        })
+                        .error(function (err) {
+                            console.log(err);
+                            isError = true;
+                        })
+                        .finally(function () {
+                            isLoad = false;
+                        });
+
+
                 }
             };
         }

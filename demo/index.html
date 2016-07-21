@@ -24,17 +24,18 @@
 <div class="container">
     <h1><a href="#home">NGUI - Demo</a></h1>
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="#alert">Alert</a></li>
-        <li role="presentation"><a href="#syspanel">Syspanel</a></li>
-        <li role="presentation"><a href="#form">Form</a></li>
-        <li role="presentation"><a href="#tab">Tab</a></li>
-        <li role="presentation"><a href="#select">Select</a></li>
-        <li role="presentation"><a href="#gridview">Grid view</a></li>
-        <li role="presentation"><a href="#paging">paging</a></li>
-        <li role="presentation"><a href="#htmltext">HtmlText</a></li>
-        <li role="presentation"><a href="#modal">Modal</a></li>
-        <li role="presentation"><a href="#notify">Notification</a></li>
-        <li role="presentation"><a href="#date">Date picker</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='alert'}"><a href="#alert">Alert</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='syspanel'}"><a href="#syspanel">Syspanel</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='form'}"><a href="#form">Form</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='tab'}"><a href="#tab">Tab</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='select'}"><a href="#select">Select</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='select-one'}"><a href="#select-one">Select one</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='gridview'}"><a href="#gridview">Grid view</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='paging'}"><a href="#paging">paging</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='htmltext'}"><a href="#htmltext">HtmlText</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='modal'}"><a href="#modal">Modal</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='notify'}"><a href="#notify">Notification</a></li>
+        <li role="presentation" ng-class="{active: $pageName =='date'}"><a href="#date">Date picker</a></li>
     </ul>
 </div>
 
@@ -52,11 +53,12 @@
 <script src="/alert/alert.js"></script>
 
 <script src="/syspanel/syspanel.js"></script>
-<link rel="stylesheet" href="/tpl-bootstrap/syspanel/style.css">
+
 
 <script src="/form/form.js"></script>
 <script src="/tab/tab.js"></script>
 <script src="/select/select.js"></script>
+<script src="/select-one/select-one.js"></script>
 <script src="/gridview/gridview.js"></script>
 <script src="/paging/paging.js"></script>
 <script src="/htmltext/htmltext.js"></script>
@@ -67,8 +69,10 @@
 <!--demo-->
 <script src="/demo/alert/ctrl.js"></script>
 <script src="/demo/syspanel/ctrl.js"></script>
+<link rel="stylesheet" href="/demo/syspanel/style.css">
 <script src="/demo/form/ctrl.js"></script>
 <script src="/demo/select/ctrl.js"></script>
+<script src="/demo/select-one/ctrl.js"></script>
 <script src="/demo/tab/ctrl.js"></script>
 <script src="/demo/gridview/ctrl.js"></script>
 <script src="/demo/paging/ctrl.js"></script>
