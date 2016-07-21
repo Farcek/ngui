@@ -1,0 +1,37 @@
+.demopanel.syspanel {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; }
+  .demopanel.syspanel panel-body,
+  .demopanel.syspanel panel-menu,
+  .demopanel.syspanel panel-header {
+    display: block;
+    box-sizing: border-box; }
+  .demopanel.syspanel .panel-wrap {
+    flex: 1;
+    display: flex;
+    position: relative; }
+  .demopanel.syspanel .panel-menu,
+  .demopanel.syspanel .panel-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: left 0.3s cubic-bezier(0.76, 0.01, 0.13, 0.98); }
+  .demopanel.syspanel .panel-menu {
+    right: auto;
+    width: 280px;
+    overflow: auto; }
+  .demopanel.syspanel .panel-body {
+    left: 280px;
+    overflow: auto; }
+  .demopanel.syspanel.closed-menu .panel-menu {
+    left: -280px; }
+  .demopanel.syspanel.closed-menu .panel-body {
+    left: 0; }
+
+.demopanel.syspanel .panel-header {
+  position: relative; }

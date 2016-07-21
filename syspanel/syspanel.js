@@ -11,6 +11,7 @@
     app.directive('nguiSyspanel', ['$nguiConfig',
         function ($nguiConfig) {
             return {
+
                 restrict: 'A',
                 transclude: {
                     'header': 'panelHeader',
@@ -22,7 +23,7 @@
                     title: '@', titleVar: '='
                 },
                 templateUrl: function (elem, attrs) {
-                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/syspanel.htm';
+                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/syspanel/syspanel.htm';
                 },
                 link: function ($scope, $ele) {
                     $ele.addClass('syspanel');
@@ -42,26 +43,4 @@
             };
         }
     ]);
-
-    // app.directive('nguiSyspanelMenu', ['$nguiConfig',
-    //     function ($nguiConfig) {
-    //         return {
-    //             restrict: 'A',
-    //             scope: {},
-    //             template: 'menu ------------------ menu'
-    //         };
-    //     }
-    // ]);
-    //
-    // app.directive('nguiSyspanelBody', ['$nguiConfig',
-    //     function ($nguiConfig) {
-    //         return {
-    //             restrict: 'A',
-    //             scope: {},
-    //             template: 'salaam ------------------ salaam'
-    //         };
-    //     }
-    // ]);
-
-
 })();

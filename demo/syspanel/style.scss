@@ -1,0 +1,5 @@
+@import "../../syspanel/style";
+
+.demopanel {
+  @include syspanel(280px, 51px);
+}

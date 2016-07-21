@@ -9,6 +9,14 @@
 
     }
 
+    panel-body,
+    panel-menu,
+    panel-header
+    {
+      display: block;
+      box-sizing: border-box;
+    }
+
     .panel-wrap {
       flex: 1;
       display: flex;
