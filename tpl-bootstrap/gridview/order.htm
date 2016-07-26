@@ -1,0 +1,3 @@
+<a href="javascript:;" ng-if="$order.status == 'desc'" class="pull-right" ng-click="$order.flag(false)">desc</a>
+<a href="javascript:;" ng-if="$order.status == 'asc'" class="pull-right" ng-click="$order.flag('desc')">asc</a>
+<a href="javascript:;" ng-if="!$order.status" class="pull-right" ng-click="$order.flag('asc')">none</a>

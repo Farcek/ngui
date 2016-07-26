@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "ng custom ui",
   "main": "core.js",
+  "scripts": {
+    "start":"http-server ."
+  },
   "private": true
 }

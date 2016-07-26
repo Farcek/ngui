@@ -6,7 +6,7 @@ function GridviewCtrl($scope, $nguiGridview, $http) {
     $scope.page = 1;
 
     $scope.load = function () {
-        console.log('load')
+        console.log('data load')
         $http.get('/demo/gridview/data.json')
             .success(function (data) {
                 $scope.$items = data.items;

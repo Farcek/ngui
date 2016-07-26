@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 6/20/2016.
  */
-/**
- * Created by Administrator on 6/17/2016.
- */
 
 (function () {
     'use strict';
@@ -17,7 +14,7 @@
                 var opts = options || {};
                 var onChangeListeners = [];
                 var self = {
-                    sorting: {},
+                    order: {},
                     filter: {},
                     onChange: function (handle) {
                         onChangeListeners.push(handle);
@@ -26,6 +23,12 @@
                         onChangeListeners.forEach(function (handle) {
                             handle(self);
                         });
+                    },
+                    get params() {
+                        return {
+                            order: self.order,
+                            filter: self.filter
+                        }
                     }
                 };
 
@@ -43,7 +46,7 @@
                     onChange: '&'
                 },
                 controller: function ($scope) {
-                    var $gridview = this.$gridview = $scope.$gridview = $scope.gridview || $nguiGridview();
+                    var $gridview = this.$gridview = $scope.gridview || ($scope.gridview = $nguiGridview());
                     $gridview.onChange(function () {
                         if ($scope.onChange) {
                             $scope.onChange();
@@ -52,48 +55,11 @@
                 }
             }
 
-            return {
-                restrict: 'A',
-                terminal: true,
-                replace: true,
-                // scope: {
-                //     gridview: '=nguiGridview'
-                // },
-                templateUrl: function (elem, attrs) {
-                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/gridview.htm';
-                },
-                controller: ['$scope',
-                    function ($scope) {
-                        alert(5)
 
-
-                        this.addColumn = function (column) {
-                            $gridview.addColumn(column);
-                        };
-                    }
-                ],
-                compile: function () {
-                    alert(10)
-                    return {
-                        pre: function () {
-                            alert(11)
-                            console.log('compile', arguments)
-                        },
-                        post: function () {
-                            alert(22)
-                            console.log('compile', arguments)
-                        }
-                    }
-                },
-                link: function (s, e, a, c, t) {
-                    alert(22)
-                    console.log('link', arguments)
-                }
-            };
         }
     ]);
 
-    nguiModule.directive('nguiGridviewSorting', ['$nguiConfig',
+    nguiModule.directive('nguiGridviewOrder', ['$nguiConfig',
         function ($nguiConfig) {
             return {
                 restrict: 'A',
@@ -101,20 +67,20 @@
                 transclude: true,
                 //replace: true,
                 scope: {
-                    field: '@nguiGridviewSorting'
+                    field: '@nguiGridviewOrder'
                 },
                 templateUrl: function (elem, attrs) {
-                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/gridview/title.htm';
+                    return attrs.templateUrl || $nguiConfig.baseTemplateUrl + '/gridview/order.htm';
                 },
                 link: function ($scope, $elem, $attrs, $ctrl, $tran) {
-                    $scope.$soring = {
+                    $scope.$order = {
                         get status() {
-                            return $ctrl.$gridview.sorting[$scope.field];
+                            return $ctrl.$gridview.order[$scope.field];
                         },
-                        sort: function (flag) {
-                            var old = $ctrl.$gridview.sorting[$scope.field];
+                        flag: function (flag) {
+                            var old = $ctrl.$gridview.order[$scope.field];
                             if (old !== flag) {
-                                $ctrl.$gridview.sorting[$scope.field] = flag;
+                                $ctrl.$gridview.order[$scope.field] = flag;
                                 $ctrl.$gridview.$onChange();
                             }
                         }
