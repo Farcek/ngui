@@ -5,26 +5,23 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    .panel-header {
 
-    }
 
     panel-body,
     panel-menu,
-    panel-header
-    {
+    panel-header {
       display: block;
       box-sizing: border-box;
     }
 
-    .panel-wrap {
+    .syspanel-wrap {
       flex: 1;
       display: flex;
       position: relative;
     }
 
-    .panel-menu,
-    .panel-body {
+    .syspanel-menu,
+    .syspanel-body {
       position: absolute;
       top: 0;
       left: 0;
@@ -32,12 +29,12 @@
       bottom: 0;
       transition: left 0.3s cubic-bezier(0.76, 0.01, 0.13, 0.98);
     }
-    .panel-menu {
+    .syspanel-menu {
       right: auto;
       width: $menu-w;
       overflow: auto;
     }
-    .panel-body {
+    .syspanel-body {
 
       left: $menu-w;
       overflow: auto;
@@ -47,15 +44,18 @@
       .panel-menu {
         left: -$menu-w;
       }
-      .panel-body {
+      .syspanel-body {
         left: 0;
       }
     }
   }
 
   &.syspanel {
-    .panel-header {
+    .syspanel-header {
       position: relative;
+      .navbar {
+        margin: 0;
+      }
     }
   }
 }

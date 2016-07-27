@@ -1,3 +1,9 @@
-<a href="javascript:;" ng-if="$order.status == 'desc'" class="pull-right" ng-click="$order.flag(false)">desc</a>
-<a href="javascript:;" ng-if="$order.status == 'asc'" class="pull-right" ng-click="$order.flag('desc')">asc</a>
-<a href="javascript:;" ng-if="!$order.status" class="pull-right" ng-click="$order.flag('asc')">none</a>
+<a href="javascript:;" ng-if="$order.status == 'desc'" class="pull-right" ng-click="$order.flag(false)">
+    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+</a>
+<a href="javascript:;" ng-if="$order.status == 'asc'" class="pull-right" ng-click="$order.flag('desc')">
+    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+</a>
+<a href="javascript:;" ng-if="!$order.status" class="pull-right" ng-click="$order.flag('asc')">
+    <span class="glyphicon glyphicon-sort"></span>
+</a>
