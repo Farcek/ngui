@@ -45,14 +45,15 @@
                     gridview: '=nguiGridview',
                     onChange: '&'
                 },
-                controller: function ($scope) {
-                    var $gridview = this.$gridview = $scope.gridview || ($scope.gridview = $nguiGridview());
-                    $gridview.onChange(function () {
-                        if ($scope.onChange) {
-                            $scope.onChange();
-                        }
-                    });
-                }
+                controller: ['$scope',
+                  function ($scope) {
+                      var $gridview = this.$gridview = $scope.gridview || ($scope.gridview = $nguiGridview());
+                      $gridview.onChange(function () {
+                          if ($scope.onChange) {
+                              $scope.onChange();
+                          }
+                      });
+                  }]
             }
 
 
