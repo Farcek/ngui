@@ -12,7 +12,7 @@
                 self = {
 
                   load: function (searchtxt) {
-                        $http.get('/demo/select/data.json', {
+                        $http.get(options.srcUrl, {
                           params: {search: searchtxt}
                         })
                         .success(function(responses){
